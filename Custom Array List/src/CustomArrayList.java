@@ -31,7 +31,7 @@ public class CustomArrayList<E> implements List<E>{
 	@Override
 	public boolean contains(Object o) {
 		for(int i = 0 ; i < this.size ; i++) {
-			if (o == array[i]) {
+			if (o.equals(array[i])) {
 				return true;
 			}
 		}
@@ -88,14 +88,20 @@ public class CustomArrayList<E> implements List<E>{
 
 	@Override
 	public boolean containsAll(Collection<?> c) {
-		// TODO Auto-generated method stub
-		return false;
+
+		Object[] cArray = c.toArray(new Object[c.size()]);
+		
+		for(int i = 0 ; i < c.size() ; i++) {
+			contains(cArray[i]);
+		}
+		
+		return true;
 	}
 
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
-		
-		Object[] cArray = c.toArray();
+
+		Object[] cArray = c.toArray(new Object[c.size()]);
 		
 		for(int i = 0 ; i < c.size() ; i++) {
 			this.array[this.size] = cArray[i];

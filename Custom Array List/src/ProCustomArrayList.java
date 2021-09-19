@@ -85,8 +85,23 @@ public class ProCustomArrayList<E> implements List<E>{
 
 	@Override
 	public boolean remove(Object o) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		int a = -1;
+		
+		for (int i = 0 ; i < this.size ; i++) {
+			if(array[i] == o) {
+				a = i;
+				array[i] = null;
+				size -= 1;
+				break;
+			}
+		}
+				
+		for (int j = a; j < this.size ; j++) {
+			array[j] = array[j + 1];
+		}
+		
+		return true;
 	}
 
 	@Override
@@ -97,8 +112,14 @@ public class ProCustomArrayList<E> implements List<E>{
 
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		Object[] cArray = c.toArray(new Object[c.size()]);
+		
+		for(int i = 0 ; i	 < c.size() ; i++) {
+			add((E) cArray[i]);
+		}
+		
+		return true;
 	}
 
 	@Override
@@ -133,14 +154,17 @@ public class ProCustomArrayList<E> implements List<E>{
 
 	@Override
 	public E get(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return (E) this.array[index];
+		
 	}
 
 	@Override
 	public E set(int index, E element) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		this.array[index] = element;
+		
+		return element;
 	}
 
 	@Override
@@ -151,20 +175,38 @@ public class ProCustomArrayList<E> implements List<E>{
 
 	@Override
 	public E remove(int index) {
-		// TODO Auto-generated method stub
+		
+		for(int i = index ; i < this.size ; i++) {
+			array[i] = array[i + 1];
+		}
+
+		size -= 1;
+		
 		return null;
 	}
 
 	@Override
 	public int indexOf(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		for(int i = 0 ; i < this.size ; i++) {
+			if(array[i] == o) {
+				return i;
+			}
+		}
+		
+		return -1;
 	}
 
 	@Override
 	public int lastIndexOf(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		for(int i = this.size - 1 ; i > -1 ; i--) {
+			if(array[i] == o) {
+				return i;
+			}
+		}
+		
+		return -1;
 	}
 
 	@Override

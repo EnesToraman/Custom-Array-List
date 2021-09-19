@@ -9,6 +9,8 @@ public class CustomArrayListProject {
 		List<Long> list2 = new CustomArrayList<Long>();
 		
 		List<Long> proList = new ProCustomArrayList<Long>();
+		
+		List<Long> proList2 = new ProCustomArrayList<Long>();
 
 		list.add(7L);
 		list.add(2L);
@@ -46,6 +48,14 @@ public class CustomArrayListProject {
 		proList.add(1L);
 
 		proList.add(4L);
+		
+		proList2.add(10L);
+		proList2.add(20L);
+		proList2.add(30L);
+		
+		proList.clear();
+		
+		proList.addAll(proList2);
 		
 		proList.clear();
 			
