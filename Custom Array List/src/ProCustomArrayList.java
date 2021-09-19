@@ -16,8 +16,17 @@ public class ProCustomArrayList<E> implements List<E>{
 	}
 	
 	private void grow() {
-		this.size = this.size * 2;
+		Object[] newArray = new Object[this.size * 2];
+		
+
+		for(int i = 0 ; i < this.size ; i++) {
+			newArray[i] = this.array[i];
+		}
+	
+		this.array = newArray;
+
 	}
+	
 	
 	@Override
 	public int size() {
@@ -59,13 +68,17 @@ public class ProCustomArrayList<E> implements List<E>{
 
 	@Override
 	public boolean add(E e) {
-		
-		if(this.array.length > this.size) {
-			this.array[this.size] = e;
-			this.size += 1;
-		} else {
+
+		if(this.array.length == this.size) {
 			grow();
+			System.out.println("ok");
+			System.out.println(this.size);
+			System.out.println(this.array.length);
+			System.out.println("ok");
 		}
+		
+		this.array[this.size] = e;
+		this.size += 1;
 		
 		return true;
 	}
@@ -108,7 +121,13 @@ public class ProCustomArrayList<E> implements List<E>{
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
+		
+		System.out.println("---");
+		for (int i = 0 ; i < this.size ; i++) {
+			System.out.println(this.array[i]);
+		}
+		
+		System.out.println("--");
 		
 	}
 
