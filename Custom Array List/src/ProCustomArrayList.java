@@ -71,10 +71,6 @@ public class ProCustomArrayList<E> implements List<E>{
 
 		if(this.array.length == this.size) {
 			grow();
-			System.out.println("ok");
-			System.out.println(this.size);
-			System.out.println(this.array.length);
-			System.out.println("ok");
 		}
 		
 		this.array[this.size] = e;
@@ -106,16 +102,25 @@ public class ProCustomArrayList<E> implements List<E>{
 
 	@Override
 	public boolean containsAll(Collection<?> c) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		Object[] cArray = c.toArray();
+		
+		for(int i = 0 ; i < c.size() ; i++) {{
+				if(!contains(cArray[i])) {
+					return false;
+				}
+			}
+		}
+		
+		return true;
 	}
 
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
 		
-		Object[] cArray = c.toArray(new Object[c.size()]);
-		
-		for(int i = 0 ; i	 < c.size() ; i++) {
+		Object[] cArray = c.toArray();
+
+		for(int i = 0 ; i < c.size() ; i++) {
 			add((E) cArray[i]);
 		}
 		
@@ -142,14 +147,7 @@ public class ProCustomArrayList<E> implements List<E>{
 
 	@Override
 	public void clear() {
-		
-		System.out.println("---");
-		for (int i = 0 ; i < this.size ; i++) {
-			System.out.println(this.array[i]);
-		}
-		
-		System.out.println("--");
-		
+		this.size = 0;
 	}
 
 	@Override
@@ -225,6 +223,16 @@ public class ProCustomArrayList<E> implements List<E>{
 	public List<E> subList(int fromIndex, int toIndex) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public void sysOut() {
+		
+		System.out.println("---");
+		for (int i = 0 ; i < this.size ; i++) {
+			System.out.println(this.array[i]);
+		}
+		
+		System.out.println("--");
 	}
 
 }

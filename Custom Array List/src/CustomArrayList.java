@@ -13,11 +13,15 @@ public class CustomArrayList<E> implements List<E>{
 		this.array = new Object[100];
 		this.size = 0;
 	}
-
-	public Object[] getArray() {
-		return this.array;
-	}
 	
+	public Object[] getArray() {
+		return array;
+	}
+
+	public void setArray(Object[] array) {
+		this.array = array;
+	}
+
 	@Override
 	public int size() {
 		return this.size;
@@ -70,12 +74,10 @@ public class CustomArrayList<E> implements List<E>{
 		
 		for (int i = 0 ; i < this.size ; i++) {
 			if(array[i] == o) {
-
 				a = i;
 				array[i] = null;
 				size -= 1;
 				break;
-			
 			}
 		}
 				
@@ -88,11 +90,16 @@ public class CustomArrayList<E> implements List<E>{
 
 	@Override
 	public boolean containsAll(Collection<?> c) {
-
-		Object[] cArray = c.toArray(new Object[c.size()]);
+				
+		Object[] cArray = c.toArray();
 		
-		for(int i = 0 ; i < c.size() ; i++) {
-			contains(cArray[i]);
+		System.out.println(cArray[0]);
+		
+		for(int i = 0 ; i < c.size() ; i++) {{
+				if(!contains(cArray[i])) {
+					return false;
+				}
+			}
 		}
 		
 		return true;
@@ -101,7 +108,7 @@ public class CustomArrayList<E> implements List<E>{
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
 
-		Object[] cArray = c.toArray(new Object[c.size()]);
+		Object[] cArray = c.toArray();
 		
 		for(int i = 0 ; i < c.size() ; i++) {
 			this.array[this.size] = cArray[i];
@@ -130,8 +137,7 @@ public class CustomArrayList<E> implements List<E>{
 		return true;
 	}
 
-	@Override
-	public void clear() {
+	public void sysOut() {
 				
 		System.out.println("---");
 		for (int i = 0 ; i < this.size ; i++) {
@@ -221,6 +227,10 @@ public class CustomArrayList<E> implements List<E>{
 		return null;
 	}
 
+	@Override
+	public void clear() {
+		this.size = 0;
+	}
 
 
 }
